@@ -1,0 +1,15 @@
+#include <iostream>
+#include <ctime>
+#include <unistd.h> // for sleep()
+using namespace std;
+
+int main() {
+    while (true) {
+        time_t now = time(0);
+        char* dt = ctime(&now);
+        system("clear"); // Use "cls" for Windows
+        cout << "Current Time: " << dt << endl;
+        sleep(1);
+    }
+    return 0;
+}
