@@ -1,0 +1,22 @@
+#include <iostream>
+#include <vector>
+using namespace std;
+
+struct Employee {
+    int id;
+    string name, position;
+    double salary;
+};
+
+int main() {
+    vector<Employee> staff;
+    int n;
+    cout << "How many employees to add? "; cin >> n;
+    for(int i=0; i<n; i++) {
+        Employee e;
+        cout << "ID, Name, Position, Salary: ";
+        cin >> e.id >> e.name >> e.position >> e.salary;
+        staff.push_back(e);
+    }
+    return 0;
+}
