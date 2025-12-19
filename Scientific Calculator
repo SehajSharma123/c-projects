@@ -1,0 +1,19 @@
+#include <iostream>
+#include <cmath>
+using namespace std;
+
+int main() {
+    int choice;
+    double num;
+    cout << "1. Square Root\n2. Power (x^y)\n3. Sine\nChoice: "; cin >> choice;
+    cout << "Enter number: "; cin >> num;
+    
+    if(choice == 1) cout << sqrt(num);
+    else if(choice == 2) {
+        double p; cout << "Enter power: "; cin >> p;
+        cout << pow(num, p);
+    }
+    else if(choice == 3) cout << sin(num);
+    
+    return 0;
+}
