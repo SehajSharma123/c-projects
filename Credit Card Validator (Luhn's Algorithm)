@@ -1,0 +1,24 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+bool checkLuhn(string cardNo) {
+    int nDigits = cardNo.length();
+    int nSum = 0, isSecond = false;
+    for (int i = nDigits - 1; i >= 0; i--) {
+        int d = cardNo[i] - '0';
+        if (isSecond == true) d = d * 2;
+        nSum += d / 10;
+        nSum += d % 10;
+        isSecond = !isSecond;
+    }
+    return (nSum % 10 == 0);
+}
+
+int main() {
+    string card;
+    cout << "Enter Card Number: "; cin >> card;
+    if (checkLuhn(card)) cout << "Valid Card\n";
+    else cout << "Invalid Card\n";
+    return 0;
+}
