@@ -1,0 +1,32 @@
+#include <iostream>
+using namespace std;
+
+char board[3][3] = {{'1','2','3'},{'4','5','6'},{'7','8','9'}};
+char turn = 'X';
+int row, col;
+
+void display() {
+    system("clear");
+    for(int i=0; i<3; i++) {
+        for(int j=0; j<3; j++) cout << board[i][j] << " ";
+        cout << endl;
+    }
+}
+
+void play() {
+    int choice;
+    cout << "Player [" << turn << "] enter position: "; cin >> choice;
+    row = (choice-1)/3; col = (choice-1)%3;
+    if(board[row][col] != 'X' && board[row][col] != 'O') {
+        board[row][col] = turn;
+        turn = (turn == 'X') ? 'O' : 'X';
+    } else {
+        cout << "Cell occupied!\n"; play();
+    }
+}
+
+int main() {
+    for(int i=0; i<9; i++) { display(); play(); }
+    display(); cout << "Game Over!\n";
+    return 0;
+}
