@@ -1,0 +1,33 @@
+#include <iostream>
+#include <fstream>
+#include <string>
+using namespace std;
+
+void registerUser() {
+    string user, pass;
+    cout << "Select Username: "; cin >> user;
+    cout << "Select Password: "; cin >> pass;
+    ofstream f("users.txt", ios::app);
+    f << user << " " << pass << endl;
+    cout << "Registration Successful!\n";
+}
+
+bool loginUser() {
+    string user, pass, u, p;
+    cout << "Username: "; cin >> user;
+    cout << "Password: "; cin >> pass;
+    ifstream f("users.txt");
+    while (f >> u >> p) {
+        if (u == user && p == pass) return true;
+    }
+    return false;
+}
+
+int main() {
+    int ch;
+    cout << "1. Register\n2. Login\nChoice: "; cin >> ch;
+    if (ch == 1) registerUser();
+    else if (loginUser()) cout << "Login Success!";
+    else cout << "Failed!";
+    return 0;
+}
