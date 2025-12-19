@@ -1,0 +1,23 @@
+#include <iostream>
+using namespace std;
+
+void showMenu() {
+    cout << "\n--- ATM MENU ---\n1. Check Balance\n2. Deposit\n3. Withdraw\n4. Exit\n";
+}
+
+int main() {
+    int choice;
+    double balance = 500.0, amount;
+    do {
+        showMenu();
+        cout << "Enter choice: "; cin >> choice;
+        switch(choice) {
+            case 1: cout << "Balance: $" << balance << endl; break;
+            case 2: cout << "Amount: "; cin >> amount; balance += amount; break;
+            case 3: cout << "Amount: "; cin >> amount; 
+                    if(amount <= balance) balance -= amount;
+                    else cout << "Insufficient funds!\n"; break;
+        }
+    } while (choice != 4);
+    return 0;
+}
