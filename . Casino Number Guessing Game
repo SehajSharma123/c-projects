@@ -1,0 +1,28 @@
+#include <iostream>
+#include <cstdlib>
+#include <ctime>
+using namespace std;
+
+int main() {
+    int balance = 100, bet, guess, dice;
+    srand(time(0));
+
+    cout << "Welcome! Balance: $" << balance << endl;
+    while (balance > 0) {
+        cout << "Enter bet amount: "; cin >> bet;
+        cout << "Guess number (1-10): "; cin >> guess;
+        dice = rand() % 10 + 1;
+
+        if (guess == dice) {
+            balance += bet * 5;
+            cout << "Win! New Balance: $" << balance << endl;
+        } else {
+            balance -= bet;
+            cout << "Lose! Actual number was " << dice << ". Balance: $" << balance << endl;
+        }
+        if (balance <= 0) break;
+        cout << "Continue? (1=Yes, 0=No): "; cin >> choice;
+        if (choice == 0) break;
+    }
+    return 0;
+}
