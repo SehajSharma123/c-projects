@@ -1,0 +1,37 @@
+#include <iostream>
+
+using namespace std;
+
+struct Player {
+    float x = 0, y = 0;
+    float velocityY = 0;
+    bool isGrounded = true;
+};
+
+void applyPhysics(Player &p) {
+    if (!p.isGrounded) {
+        p.velocityY -= 0.98; // Gravity
+        p.y += p.velocityY;
+    }
+    if (p.y <= 0) {
+        p.y = 0;
+        p.isGrounded = true;
+        p.velocityY = 0;
+    }
+}
+
+int main() {
+    Player p;
+    cout << "Press 'j' to jump: ";
+    char input; cin >> input;
+    if (input == 'j') {
+        p.velocityY = 10; // Jump force
+        p.isGrounded = false;
+    }
+    
+    for(int i=0; i<10; i++) {
+        applyPhysics(p);
+        cout << "Player Height: " << p.y << endl;
+    }
+    return 0;
+}
