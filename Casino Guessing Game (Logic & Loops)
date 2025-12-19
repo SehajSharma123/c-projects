@@ -1,0 +1,44 @@
+#include <iostream>
+#include <cstdlib>
+#include <ctime>
+
+using namespace std;
+
+void playGame() {
+    int balance, bettingAmount, guess, dice;
+    string name;
+    srand(time(0));
+
+    cout << "Enter name: "; getline(cin, name);
+    cout << "Deposit starting balance: $"; cin >> balance;
+
+    do {
+        cout << "\nBalance: $" << balance << "\nEnter bet: $"; cin >> bettingAmount;
+        if(bettingAmount > balance) {
+            cout << "Too high!\n"; continue;
+        }
+
+        cout << "Guess (1-10): "; cin >> guess;
+        dice = rand() % 10 + 1;
+
+        if(guess == dice) {
+            cout << "Winner! You won $" << bettingAmount * 10;
+            balance += bettingAmount * 10;
+        } else {
+            cout << "Lose. Number was " << dice;
+            balance -= bettingAmount;
+        }
+
+        if(balance <= 0) {
+            cout << "\nBankrupt!"; break;
+        }
+        cout << "\nPlay again? (y/n): ";
+        char c; cin >> c;
+        if(c == 'n') break;
+    } while(true);
+}
+
+int main() {
+    playGame();
+    return 0;
+}
