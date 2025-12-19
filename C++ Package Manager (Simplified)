@@ -1,0 +1,21 @@
+#include <iostream>
+#include <vector>
+#include <fstream>
+
+using namespace std;
+
+void installPackage(string pkg) {
+    cout << "Fetching " << pkg << "..." << endl;
+    ofstream log("packages.log", ios::app);
+    log << pkg << " installed successfully." << endl;
+    log.close();
+    cout << "Success!" << endl;
+}
+
+int main() {
+    string pkg;
+    cout << "Enter package name to install: ";
+    cin >> pkg;
+    installPackage(pkg);
+    return 0;
+}
