@@ -1,0 +1,25 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+string encrypt(string text, int s) {
+    string result = "";
+    for (int i = 0; i < text.length(); i++) {
+        if (isupper(text[i]))
+            result += char(int(text[i] + s - 65) % 26 + 65);
+        else if (islower(text[i]))
+            result += char(int(text[i] + s - 97) % 26 + 97);
+        else result += text[i];
+    }
+    return result;
+}
+
+int main() {
+    string text; int s;
+    cout << "Enter text: "; getline(cin, text);
+    cout << "Enter shift key: "; cin >> s;
+    string encrypted = encrypt(text, s);
+    cout << "Encrypted: " << encrypted << endl;
+    cout << "Decrypted: " << encrypt(encrypted, 26 - s) << endl;
+    return 0;
+}
