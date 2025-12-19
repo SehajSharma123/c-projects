@@ -1,0 +1,31 @@
+#include <iostream>
+#include <fstream>
+using namespace std;
+
+struct Contact {
+    char name[50], phone[15];
+};
+
+void addContact() {
+    Contact c;
+    cout << "Name: "; cin >> c.name;
+    cout << "Phone: "; cin >> c.phone;
+    ofstream f("phonebook.dat", ios::binary | ios::app);
+    f.write((char*)&c, sizeof(c));
+    f.close();
+}
+
+void listContacts() {
+    Contact c;
+    ifstream f("phonebook.dat", ios::binary);
+    while(f.read((char*)&c, sizeof(c))) {
+        cout << c.name << " : " << c.phone << endl;
+    }
+}
+
+int main() {
+    int ch;
+    cout << "1. Add\n2. List\nChoice: "; cin >> ch;
+    if(ch == 1) addContact(); else listContacts();
+    return 0;
+}
