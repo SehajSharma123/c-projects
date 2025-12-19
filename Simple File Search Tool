@@ -1,0 +1,21 @@
+#include <iostream>
+#include <fstream>
+#include <string>
+using namespace std;
+
+int main() {
+    string fileName, word, line;
+    cout << "Enter filename: "; cin >> fileName;
+    cout << "Enter keyword: "; cin >> word;
+    
+    ifstream file(fileName);
+    int lineNum = 0;
+    while(getline(file, line)) {
+        lineNum++;
+        if(line.find(word) != string::npos) {
+            cout << "Found at line " << lineNum << ": " << line << endl;
+        }
+    }
+    file.close();
+    return 0;
+}
