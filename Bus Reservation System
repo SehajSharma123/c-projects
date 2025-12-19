@@ -1,0 +1,24 @@
+#include <iostream>
+using namespace std;
+
+char seats[10][4]; 
+
+void initSeats() {
+    for(int i=0; i<10; i++)
+        for(int j=0; j<4; j++) seats[i][j] = 'A'; // A = Available
+}
+
+void bookSeat() {
+    int r, c;
+    cout << "Enter row (1-10) and col (1-4): "; cin >> r >> c;
+    if(seats[r-1][c-1] == 'A') {
+        seats[r-1][c-1] = 'B'; // B = Booked
+        cout << "Booked!\n";
+    } else cout << "Already taken!\n";
+}
+
+int main() {
+    initSeats();
+    bookSeat();
+    return 0;
+}
