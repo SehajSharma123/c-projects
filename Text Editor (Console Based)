@@ -1,0 +1,20 @@
+#include <iostream>
+#include <fstream>
+#include <string>
+
+using namespace std;
+
+int main() {
+    string filename, line;
+    cout << "Enter filename to create: "; cin >> filename;
+    ofstream file(filename);
+    
+    cout << "Enter text (Type 'SAVE' on a new line to stop):" << endl;
+    while (getline(cin, line)) {
+        if (line == "SAVE") break;
+        file << line << endl;
+    }
+    file.close();
+    cout << "File saved." << endl;
+    return 0;
+}
