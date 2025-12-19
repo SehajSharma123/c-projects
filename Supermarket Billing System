@@ -1,0 +1,34 @@
+#include <iostream>
+#include <vector>
+using namespace std;
+
+struct Item {
+    int id;
+    string name;
+    float price;
+};
+
+int main() {
+    vector<Item> cart;
+    int choice;
+    float total = 0;
+
+    while (true) {
+        cout << "\n1. Add Item to Bill\n2. Print Receipt & Exit\nChoice: ";
+        cin >> choice;
+        if (choice == 1) {
+            Item it;
+            cout << "Name: "; cin >> it.name;
+            cout << "Price: "; cin >> it.price;
+            cart.push_back(it);
+        } else break;
+    }
+
+    cout << "\n--- RECEIPT ---\n";
+    for (auto const& item : cart) {
+        cout << item.name << " : $" << item.price << endl;
+        total += item.price;
+    }
+    cout << "----------------\nTOTAL: $" << total << endl;
+    return 0;
+}
