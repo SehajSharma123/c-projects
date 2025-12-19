@@ -1,0 +1,42 @@
+#include <iostream>
+#include <fstream>
+using namespace std;
+
+class Account {
+    int accNum;
+    char name[50];
+    float deposit;
+public:
+    void createAccount() {
+        cout << "Enter Account Number: "; cin >> accNum;
+        cout << "Enter Name: "; cin.ignore(); cin.getline(name, 50);
+        cout << "Initial Deposit: "; cin >> deposit;
+    }
+    void showAccount() { cout << accNum << " | " << name << " | Balance: $" << deposit << endl; }
+    int getID() { return accNum; }
+};
+
+void saveAccount() {
+    Account ac;
+    ac.createAccount();
+    ofstream outFile("bank.dat", ios::binary | ios::app);
+    outFile.write(reinterpret_cast<char*>(&ac), sizeof(Account));
+}
+
+void displayAll() {
+    Account ac;
+    ifstream inFile("bank.dat", ios::binary);
+    while (inFile.read(reinterpret_cast<char*>(&ac), sizeof(Account))) {
+        ac.showAccount();
+    }
+}
+
+int main() {
+    int ch;
+    do {
+        cout << "\n1. New Account\n2. List All\n3. Exit\nChoice: "; cin >> ch;
+        if(ch == 1) saveAccount();
+        else if(ch == 2) displayAll();
+    } while(ch != 3);
+    return 0;
+}
