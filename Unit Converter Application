@@ -1,0 +1,16 @@
+#include <iostream>
+using namespace std;
+
+void convert() {
+    int type;
+    float val;
+    cout << "1. KG to Lbs\n2. Celsius to Fahrenheit\nChoice: "; cin >> type;
+    cout << "Enter Value: "; cin >> val;
+    if (type == 1) cout << val * 2.204 << " lbs" << endl;
+    else cout << (val * 9/5) + 32 << " F" << endl;
+}
+
+int main() {
+    convert();
+    return 0;
+}
