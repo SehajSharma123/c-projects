@@ -1,0 +1,44 @@
+#include <iostream>
+#include <fstream>
+#include <string>
+
+using namespace std;
+
+struct Student {
+    int roll;
+    string name;
+    float marks;
+};
+
+void addStudent() {
+    Student s;
+    cout << "Enter Roll: "; cin >> s.roll;
+    cout << "Enter Name: "; cin.ignore(); getline(cin, s.name);
+    cout << "Enter Marks: "; cin >> s.marks;
+
+    ofstream out("students.txt", ios::app);
+    out << s.roll << " " << s.name << " " << s.marks << endl;
+    out.close();
+    cout << "Record saved!\n";
+}
+
+void viewStudents() {
+    ifstream in("students.txt");
+    int r; string n; float m;
+    cout << "\n--- Student List ---\n";
+    while (in >> r >> n >> m) {
+        cout << "Roll: " << r << " | Name: " << n << " | Marks: " << m << endl;
+    }
+    in.close();
+}
+
+int main() {
+    int choice;
+    while(true) {
+        cout << "\n1. Add\n2. View\n3. Exit\nChoice: "; cin >> choice;
+        if(choice == 1) addStudent();
+        else if(choice == 2) viewStudents();
+        else break;
+    }
+    return 0;
+}
