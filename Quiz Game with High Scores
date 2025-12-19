@@ -1,0 +1,23 @@
+#include <iostream>
+#include <vector>
+using namespace std;
+
+struct Question {
+    string q, a, b, c;
+    char correct;
+};
+
+int main() {
+    vector<Question> quiz = {
+        {"Capital of France?", "A. Berlin", "B. Paris", "C. Rome", 'B'},
+        {"Size of int in C++?", "A. 2 bytes", "B. 4 bytes", "C. Depends", 'C'}
+    };
+    int score = 0; char ans;
+    for(auto &item : quiz) {
+        cout << item.q << "\n" << item.a << "\n" << item.b << "\n" << item.c << "\nAns: ";
+        cin >> ans;
+        if(toupper(ans) == item.correct) score++;
+    }
+    cout << "Final Score: " << score << "/" << quiz.size() << endl;
+    return 0;
+}
