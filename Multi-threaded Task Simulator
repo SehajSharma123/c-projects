@@ -1,0 +1,26 @@
+#include <iostream>
+#include <thread>
+#include <unistd.h>
+
+void taskA() {
+    for(int i=0; i<3; i++) {
+        cout << "Task A processing...\n";
+        sleep(1);
+    }
+}
+
+void taskB() {
+    for(int i=0; i<3; i++) {
+        cout << "Task B processing...\n";
+        sleep(1);
+    }
+}
+
+int main() {
+    std::thread t1(taskA);
+    std::thread t2(taskB);
+    t1.join();
+    t2.join();
+    cout << "All tasks complete." << endl;
+    return 0;
+}
